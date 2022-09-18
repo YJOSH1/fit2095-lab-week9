@@ -30,6 +30,7 @@ app.put('/parcel/address', parcel.updateParcelAddress);
 app.put('/parcel/cost', parcel.updateParcelIncCost);
 app.put('/sender/parcel', parcel.addParcel);
 app.delete('/parcel', parcel.deleteParcel);
+app.get('/parcels', parcel.getAllParcels);
 
 
 //Sender
@@ -37,3 +38,4 @@ app.post('/sender', sender.newSender);
 app.get('/sender/:name', sender.getSenderName);
 app.delete('/sender', sender.deleteSender)
 app.put('/sender', sender.updateSenderName);
+app.get('/senders', sender.getAllSenders);

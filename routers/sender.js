@@ -4,6 +4,16 @@ const Sender = require('../models/sender');
 const Parcel = require('../models/parcel');
 
 module.exports = {
+    getAllSenders: function (req, res) {
+        Sender.find({}, function (err, senders) {
+            if (err) {
+                return res.json(err);
+            } else {
+                res.json(senders)
+            }
+        });
+    },
+
     getSenderName: function (req, res) {
         Sender.find({name: req.params.name})
             .populate('parcels')
