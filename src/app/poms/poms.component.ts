@@ -22,8 +22,41 @@ export class PomsComponent implements OnInit {
   constructor(private dbService: DatabaseService) {}
 
   //get all parcels
+  onAddParcel() {
+    let newParcel = {
+      senderId: this.senderId,
+      parcel: {
+        weight: this.weight,
+        address: this.address,
+        fragile: this.fragile
+      }
+    }
+
+    this.dbService.addParcel(newParcel).subscribe(result => {
+      this.changeSection(4);
+    });
+  }
+
+  onAddSender() {
+    console.log(this.senderName);
+    let newSender = {
+      name: this.senderName
+    }
+
+    this.dbService.addSender(newSender).subscribe(result => {
+      this.onGetSenders();
+      this.section = 5;
+    })
+  }
+
   onGetParcels() {
     this.dbService.getParcels().subscribe((data: any) => {
+      this.pomsDB = data;
+    });
+  }
+
+  onGetSenders() {
+    this.dbService.getSenders().subscribe((data: any) => {
       this.pomsDB = data;
     });
   }
@@ -31,6 +64,25 @@ export class PomsComponent implements OnInit {
   
 
   ngOnInit(): void {
+  }
+
+  changeSection(sectionId: number) {
+    this.section = sectionId;
+    this.resetValues();
+    
+    if (sectionId == 4) {
+      this.onGetParcels();
+    } else if (sectionId == 5) {
+      this.onGetSenders();
+    }
+  }
+
+  resetValues() {
+    this.senderName = "";
+    this.senderId = "";
+    this.address = "";
+    this.weight = 0;
+    this.fragile = false;
   }
 
 }

@@ -26,7 +26,6 @@ module.exports = {
 
     newSender: function (req, res) {
         let newSenderDetails = req.body;
-    
         let sender = new Sender(newSenderDetails);
         sender.save(function (err) {
             console.log('Done');
