@@ -34,10 +34,6 @@ const parcelSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
-    cost: {
-        type: Number,
-        required: true
-    }
 });
 
 module.exports = mongoose.model('Parcel', parcelSchema);
