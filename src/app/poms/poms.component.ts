@@ -43,8 +43,7 @@ export class PomsComponent implements OnInit {
     }
 
     this.dbService.addSender(newSender).subscribe(result => {
-      this.onGetSenders();
-      this.section = 5;
+      this.changeSection(3);
     })
   }
 
