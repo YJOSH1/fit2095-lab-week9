@@ -43,13 +43,21 @@ export class PomsComponent implements OnInit {
     }
 
     this.dbService.addSender(newSender).subscribe(result => {
-      this.changeSection(3);
+      this.changeSection(5);
     })
   }
 
   onGetParcels() {
     this.dbService.getParcels().subscribe((data: any) => {
       this.pomsDB = data;
+    });
+  }
+
+  onGetFragileParcels() {
+    this.dbService.getParcels().subscribe((data: any) => {
+      this.pomsDB = data.filter(function(p: any) {
+        return p.fragile === true;
+      });
     });
   }
 
@@ -70,6 +78,8 @@ export class PomsComponent implements OnInit {
       this.onGetParcels();
     } else if (sectionId == 5) {
       this.onGetSenders();
+    } else if (sectionId == 6) {
+      this.onGetFragileParcels();
     }
   }
 
