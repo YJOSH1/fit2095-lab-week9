@@ -38,7 +38,6 @@ export class PomsComponent implements OnInit {
   }
 
   onAddSender() {
-    console.log(this.senderName);
     let newSender = {
       name: this.senderName
     }
@@ -60,8 +59,6 @@ export class PomsComponent implements OnInit {
       this.pomsDB = data;
     });
   }
-
-  
 
   ngOnInit(): void {
   }
